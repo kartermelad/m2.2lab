@@ -1,4 +1,4 @@
-import {helloWorld, add} from '../js/main.js';
+import {helloWorld, add, fetchRandomJoke} from '../js/main.js';
 // Import the sinon library to allow us to create a spy on the console.log function
 import sinon from 'sinon';
 
@@ -47,4 +47,19 @@ QUnit.module('main.js tests', function() {
         assert.equal(result, expected, 'add(2, -3) should return -1');
     });
 
+    QUnit.test('add should throw an error if one or both arguments are missing', function(assert) {
+        assert.throws(() => add(2), /You must provide two numbers to add/, 'add(2) should throw an error');
+        assert.throws(() => add(), /You must provide two numbers to add/, 'add() should throw an error');
+    });
+
+    QUnit.test('add should throw an error if arguments are not numbers', function(assert) {
+        assert.throws(() => add(2, '3'), /You must provide two numbers to add/, 'add(2, "3") should throw an error');
+        assert.throws(() => add('2', 3), /You must provide two numbers to add/, 'add("2", 3) should throw an error');
+    });
+
+    QUnit.test('fetchRandomJoke should return a joke in the correct format', async function(assert) {
+        const joke = await fetchRandomJoke();
+        assert.ok(joke.includes(' - '), 'fetchRandomJoke should return a joke in the format "setup - punchline"');
+    });
+    
 });

@@ -27,3 +27,7 @@ To run the tests for the project, run the following command:
 ```bash
 npm test
 ```
+## Running Website
+
+After running the npm commands shown above. The user should install the live preview extension on VS Code. Once the user has this extension installed
+they can right click the 'index.html' file then click 'show preview'. This will show a preview of the website.
